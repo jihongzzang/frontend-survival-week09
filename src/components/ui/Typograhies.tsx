@@ -6,18 +6,14 @@ export const Heading = styled(RadixHeading)<{
   variant?: keyof DefaultTheme['typographies'];
   color?: keyof DefaultTheme['colors'];
 }>`
-  ${({ theme, variant }) =>
-    variant ? theme.typographies[variant] : theme.typographies.body_01}
-  color: ${({ theme, color }) =>
-    color ? theme.colors[color] : theme.colors.blackA10}
+  ${({ theme, variant }) => (variant ? theme.typographies[variant] : theme.typographies.body_01)}
+  color: ${({ theme, color }) => (color ? theme.colors[color] : theme.colors.blackA10)}
 `;
 
 export const Text = styled(RadixText)<{
   variant?: keyof DefaultTheme['typography'];
   color?: keyof DefaultTheme['colors'];
 }>`
-  ${({ theme, variant }) =>
-    variant ? theme.typographies[variant] : theme.typographies.body_01}
-  color: ${({ theme, color }) =>
-    color ? theme.colors[color] : theme.colors.blackA10}
+  ${({ theme, variant }) => (variant ? theme.typographies[variant] : theme.typographies.body_01)}
+  color: ${({ theme, color }) => (color ? theme.colors[color] : theme.colors.blackA10)}
 `;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Category } from '../types';
+import { Category, ProductSummary } from '../types';
 
 const API_BASE_URL = process.env.REACT_APP_BASE_API_URL || 'https://shop-demo-api-01.fly.dev';
 
@@ -15,6 +15,20 @@ export default class ApiService {
     const { categories } = data;
 
     return categories ?? [];
+  }
+
+  async fetchProducts({
+    categoryId,
+  }: {
+    categoryId?: string;
+  } = {}): Promise<ProductSummary[]> {
+    const { data } = await this.instance.get('/products', {
+      params: { categoryId },
+    });
+
+    const { products } = data;
+
+    return products ?? [];
   }
 }
 

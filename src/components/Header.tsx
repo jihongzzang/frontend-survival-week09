@@ -50,11 +50,9 @@ const HeaderLink = styled(Link)`
 
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
 
-  border-bottom: ${({ theme, selected }) =>
-    selected ? `3px solid ${theme.colors.blackA8}` : 'none'};
+  border-bottom: ${({ theme, selected }) => (selected ? `3px solid ${theme.colors.blackA8}` : 'none')};
 
-  color: ${({ theme, selected }) =>
-    selected ? theme.colors.blackA8 : theme.colors.gray8};
+  color: ${({ theme, selected }) => (selected ? theme.colors.blackA8 : theme.colors.gray8)};
 `;
 
 export default function Header() {
@@ -63,8 +61,8 @@ export default function Header() {
   const { selctedCategory } = useSelectedCategory();
 
   return (
-    <Container direction='column'>
-      <Heading variant='heading_03'>Shop</Heading>
+    <Container direction="column">
+      <Heading variant="heading_03">Shop</Heading>
 
       <nav>
         <ul>
@@ -78,8 +76,8 @@ export default function Header() {
         </ul>
 
         <ul>
-          {!!categories.length &&
-            categories.map(({ id }) => {
+          {!!categories.length
+            && categories.map(({ id }) => {
               const title = categoryFormat(id);
 
               return (

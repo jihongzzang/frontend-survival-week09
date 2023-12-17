@@ -23,14 +23,14 @@ type Option = {
 
 export function render(
   element: React.ReactElement,
-  { path = '/' }: Option = {}
+  { path = '/' }: Option = {},
 ) {
   return originalRender(
     <MemoryRouter initialEntries={[path]}>
       <ThemeProvider theme={defaultTheme}>
         <RadixThemeProvider>{element}</RadixThemeProvider>
       </ThemeProvider>
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 }
 
@@ -42,6 +42,6 @@ export function renderRouter(path: string) {
       <RadixThemeProvider>
         <RouterProvider router={router} />
       </RadixThemeProvider>
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 }
