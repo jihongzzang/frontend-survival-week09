@@ -1,50 +1,17 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import PATHNAME from './constants/pathname';
 
-import { ThemeProvider } from 'styled-components';
-
-import defaultTheme from './styles/defaultTheme';
-
-import routes from './routes';
-
-import fixtures from '../fixtures';
+import { renderRouter } from './test-helpers';
 
 const context = describe;
 
 describe('routes', () => {
-  function renderRouter(path: string) {
-    const router = createMemoryRouter(routes, { initialEntries: [path] });
-    render((
-      <ThemeProvider theme={defaultTheme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    ));
-  }
-
-  context('when the current path is “/”', () => {
+  context(`when the current path is '${PATHNAME.HOME}'`, () => {
     it('renders the home page', async () => {
-      renderRouter('/');
+      renderRouter(PATHNAME.HOME);
 
-      // await waitFor(() => {
-      //   screen.getByText(/Category #1/);
-      // });
+      screen.getByText(/Shop/);
     });
-  });
-
-  context('when the current path is “/products”', () => {
-    // TODO #1: category ID가 없을 때
-
-    // TODO #2: category ID가 있을 때
-  });
-
-  context('when the current path is “/products/{id}”', () => {
-    // TODO #1: 상품 ID일 때
-
-    // TODO #2: 상품 ID가 올바르지 않을 때
-  });
-
-  context('when the current path is “/cart”', () => {
-    // TODO: cart 페이지 라우팅 테스트
   });
 });

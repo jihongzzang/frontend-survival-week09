@@ -1,1 +1,3 @@
-// TODO: 상품 목록 보여주기
+export default function ProductListPage() {
+  return <div>ProductListPage</div>;
+}
