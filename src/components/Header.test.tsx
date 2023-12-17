@@ -5,7 +5,9 @@ import { render } from '../test-helpers';
 import Header from './Header';
 
 import PATHNAME from '../constants/pathname';
+
 import categories from '../../fixtures/categories';
+
 import { categoryFormat } from '../utils';
 
 const context = describe;
@@ -20,7 +22,7 @@ describe('Header', () => {
       ['홈', '전체', '장바구니', '상의', '하의', '아우터', '악세사리'].forEach(
         (ele) => {
           screen.getByRole('link', { name: ele });
-        },
+        }
       );
     });
   });
@@ -62,7 +64,7 @@ describe('Highlighting correct category based on the query parameter', () => {
             expect(selectedLink).toHaveStyle('fontWeight: 700');
           });
         });
-      },
+      }
     );
   });
 });
