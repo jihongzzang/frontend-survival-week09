@@ -7,4 +7,4 @@ export = {
     I.amOnPage(`${BACKDOOR_BASE_URL}/setup-database`);
     I.see('OK');
   },
-}
+};

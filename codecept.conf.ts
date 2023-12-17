@@ -16,7 +16,7 @@ export const config = {
   output: './output',
   helpers: {
     Playwright: {
-      url: 'http://localhost:8080',
+      url: 'http://localhost:8081',
       show: true,
       browser: 'chromium',
       waitForTimeout: 10_000,

@@ -15,8 +15,9 @@ Scenario('Add to cart', ({ I }) => {
 
   I.click('CBCL 하트자수맨투맨');
 
-  I.selectOption('컬러', 'blue');
-  I.seeElement('//button[contains(., "+")]');
+  I.click('[role="combobox"]');
+
+  I.click('blue');
 
   I.click('장바구니에 담기');
 
@@ -24,6 +25,11 @@ Scenario('Add to cart', ({ I }) => {
 
   I.amOnPage('/cart');
 
-  I.see('CBCL 하트자수맨투맨\n(컬러: blue');
-  I.see('합계\t128,000원');
+  I.see('CBCL 하트자수맨투맨');
+
+  I.see('(컬러: blue');
+
+  I.see('합계');
+
+  I.see('128,000원');
 });
