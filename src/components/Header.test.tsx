@@ -22,7 +22,7 @@ describe('Header', () => {
       ['홈', '전체', '장바구니', '상의', '하의', '아우터', '악세사리'].forEach(
         (ele) => {
           screen.getByRole('link', { name: ele });
-        }
+        },
       );
     });
   });
@@ -64,7 +64,7 @@ describe('Highlighting correct category based on the query parameter', () => {
             expect(selectedLink).toHaveStyle('fontWeight: 700');
           });
         });
-      }
+      },
     );
   });
 });
