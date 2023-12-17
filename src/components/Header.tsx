@@ -1,38 +1,99 @@
-import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 
-const Container = styled.header`
-  margin-bottom: 2rem;
+import { Flex, Heading, Link } from './ui';
 
-  h1 {
-    font-size: 4rem;
-  }
+import PATHNAME from '../constants/pathname';
+
+import useFetchCategories from '../hooks/useFetchCategories';
+
+import useSelectedCategory from '../hooks/useSelectedCategory';
+
+import { categoryFormat } from '../utils';
+
+const navMainLinks = [
+  { title: '홈', pathName: PATHNAME.HOME },
+  { title: '전체', pathName: PATHNAME.PRODUCTS },
+  { title: '장바구니', pathName: PATHNAME.CART },
+];
+
+const Container = styled(Flex)`
+  margin-bottom: 1.6rem;
 
   nav {
-    padding-block: 2rem;
+    display: flex;
+
+    flex-direction: column;
+
+    column-gap: 2.4rem;
+
+    padding-block: 1.2rem 0.5rem;
 
     ul {
+      width: fit-content;
       display: flex;
+      column-gap: 2.4rem;
     }
 
     li {
-      margin-right: 2rem;
-    }
-
-    .active {
-      color: ${(props) => props.theme.colors.primary};
+      height: fit-content;
+      padding-block: 1.5rem 0.6rem;
     }
   }
 `;
 
-// TODO: 헤더에 카테고리 목록 보여주기
+const HeaderLink = styled(Link)`
+  ${({ theme }) => theme.typographies.body_03}
+
+  white-space: nowrap;
+
+  padding-block: 1.5rem 0.6rem;
+
+  font-weight: ${({ selected }) => (selected ? 700 : 400)};
+
+  border-bottom: ${({ theme, selected }) =>
+    selected ? `3px solid ${theme.colors.blackA8}` : 'none'};
+
+  color: ${({ theme, selected }) =>
+    selected ? theme.colors.blackA8 : theme.colors.gray8};
+`;
+
 export default function Header() {
+  const { categories } = useFetchCategories();
+
+  const { selctedCategory } = useSelectedCategory();
+
   return (
-    <Container>
-      <h1>Shop</h1>
+    <Container direction='column'>
+      <Heading variant='heading_03'>Shop</Heading>
+
       <nav>
-        <Link to="products">Products</Link>
+        <ul>
+          {navMainLinks.map(({ title, pathName }) => (
+            <li key={title}>
+              <HeaderLink to={pathName} selected={title === selctedCategory}>
+                {title}
+              </HeaderLink>
+            </li>
+          ))}
+        </ul>
+
+        <ul>
+          {!!categories.length &&
+            categories.map(({ id }) => {
+              const title = categoryFormat(id);
+
+              return (
+                <li key={id}>
+                  <HeaderLink
+                    to={`${PATHNAME.PRODUCTS}?categoryId=${id}`}
+                    selected={title === selctedCategory}
+                  >
+                    {title}
+                  </HeaderLink>
+                </li>
+              );
+            })}
+        </ul>
       </nav>
     </Container>
   );

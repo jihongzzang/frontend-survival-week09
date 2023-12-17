@@ -1,4 +1,4 @@
-import ComboBox from '../../ui/ComboBox';
+import ComboBox from '../../ui/molecule/ComboBox';
 
 import { ProductOption, ProductOptionItem } from '../../../types';
 
@@ -8,10 +8,12 @@ type OptionProps = {
   option: ProductOption;
   selectedItem: ProductOptionItem;
   onChange: ChangeFunction;
-}
+};
 
 export default function Option({
-  option, selectedItem, onChange,
+  option,
+  selectedItem,
+  onChange,
 }: OptionProps) {
   const handleChange = (item: ProductOptionItem | null) => {
     if (!item) {

@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { render as originalRender } from '@testing-library/react';
-
 import React from 'react';
 
 import {
@@ -8,6 +5,9 @@ import {
   RouterProvider,
   createMemoryRouter,
 } from 'react-router-dom';
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { render as originalRender } from '@testing-library/react';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -23,14 +23,14 @@ type Option = {
 
 export function render(
   element: React.ReactElement,
-  { path = '/' }: Option = {},
+  { path = '/' }: Option = {}
 ) {
   return originalRender(
     <MemoryRouter initialEntries={[path]}>
       <ThemeProvider theme={defaultTheme}>
         <RadixThemeProvider>{element}</RadixThemeProvider>
       </ThemeProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -42,6 +42,6 @@ export function renderRouter(path: string) {
       <RadixThemeProvider>
         <RouterProvider router={router} />
       </RadixThemeProvider>
-    </ThemeProvider>,
+    </ThemeProvider>
   );
 }
