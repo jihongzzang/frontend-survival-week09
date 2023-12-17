@@ -43,7 +43,7 @@ describe('ApiService', () => {
 
   describe('fetchProduct', () => {
     context('with an invalid product ID', () => {
-      it('hould return a 404 error', async () => {
+      it('should return a 404 error', async () => {
         let errorResponse: ErrorReponse | null = null;
 
         try {
@@ -57,7 +57,7 @@ describe('ApiService', () => {
       });
     });
 
-    context('fetchProduct with a valid product ID', () => {
+    context('with a valid product ID', () => {
       const { id } = fixtures.products[0];
 
       it('should return the detailed product information', async () => {
