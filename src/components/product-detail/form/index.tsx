@@ -10,7 +10,7 @@ import SubmitButton from './SubmitButton';
 
 export default function AddToCartForm() {
   return (
-    <Flex direction='column'>
+    <Flex direction="column">
       <Options />
       <Quantity />
       <Price />

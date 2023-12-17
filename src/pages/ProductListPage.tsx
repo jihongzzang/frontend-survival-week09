@@ -20,7 +20,7 @@ export default function ProductListPage() {
   return (
     <Flex direction="column" gap="5">
       <Heading as="h2" variant="heading_03">
-        {categoryId ? categoryFormat(categoryId) : '상품'}
+        {categoryId ? categoryFormat(categoryId) : '전체 상품'}
       </Heading>
       <Products products={products} />
     </Flex>

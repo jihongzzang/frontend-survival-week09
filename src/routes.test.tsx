@@ -65,5 +65,41 @@ describe('routes', () => {
         });
       });
     });
+
+    context(`when the current path is '${PATHNAME.PRODUCTS}/:id'`, () => {
+      context('with correct ID', () => {
+        it('renders the product detail page', async () => {
+          renderRouter(`${PATHNAME.PRODUCTS}/${product.id}`);
+
+          screen.getByText(/Loading/);
+
+          await waitFor(() => {
+            screen.getByText(/Product #1/);
+          });
+        });
+      });
+
+      context('with incorrect ID', () => {
+        it('renders "not found" message', async () => {
+          renderRouter(`${PATHNAME.PRODUCTS}/xxx`);
+
+          await waitFor(() => {
+            screen.getByText(/Error/);
+          });
+        });
+      });
+    });
+
+    context(`when the current path is '${PATHNAME.CART}`, () => {
+      context('', () => {
+        it('renders the cart page', async () => {
+          renderRouter(`${PATHNAME.CART}`);
+
+          await waitFor(() => {
+            screen.getByText(/장바구니/);
+          });
+        });
+      });
+    });
   });
 });

@@ -39,12 +39,12 @@ export default function ProductDetail() {
   const [{ product }] = useProductDetailStore();
 
   return (
-    <Container justify='between' gap='4'>
+    <Container justify="between" gap="4">
       <aside>
         <Images images={product.images} />
       </aside>
       <article>
-        <Heading as='h2' variant='body_02'>
+        <Heading as="h2" variant="body_02">
           {product.name}
         </Heading>
         <AddToCartForm />

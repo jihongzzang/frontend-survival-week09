@@ -74,18 +74,16 @@ describe('ApiService', () => {
     const [option] = product.options;
     const [, item] = option.items;
 
-    let errorOccurred = false;
+    await apiService.addProductToCart({
+      productId: product.id,
+      options: [{ id: option.id, itemId: item.id }],
+      quantity: 1,
+    });
+  });
 
-    try {
-      await apiService.addProductToCart({
-        productId: product.id,
-        options: [{ id: option.id, itemId: item.id }],
-        quantity: 1,
-      });
-    } catch (error) {
-      errorOccurred = true;
-    }
+  test('fetchCart', async () => {
+    const cart = await apiService.fetchCart();
 
-    expect(errorOccurred).toBe(false);
+    expect(cart.lineItems).not.toHaveLength(0);
   });
 });

@@ -22,29 +22,29 @@ export default function Quantity() {
   };
 
   return (
-    <FlexContainer gap='2'>
+    <FlexContainer gap="2">
       <Button
-        variant='outline'
-        color='red'
-        size='2'
+        variant="outline"
+        color="red"
+        size="2"
         onClick={handleClickDecrease}
       >
         -
       </Button>
 
       <TextField.Input
-        variant='soft'
-        color='red'
-        size='2'
-        type='text'
+        variant="soft"
+        color="red"
+        size="2"
+        type="text"
         readOnly
         value={quantity}
       />
 
       <Button
-        variant='outline'
-        color='red'
-        size='2'
+        variant="outline"
+        color="red"
+        size="2"
         onClick={handleClickIncrease}
       >
         +

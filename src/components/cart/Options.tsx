@@ -2,29 +2,24 @@ import styled from 'styled-components';
 
 import { OrderOption } from '../../types';
 
-const Container = styled.div`
-  margin-top: .5rem;
+const Paragraph = styled.p`
+  margin-top: 0.5rem;
   font-size: 1.4rem;
+  display: block;
 `;
 
 type OptionsProps = {
   options: OrderOption[];
-}
+};
 
 export default function Options({ options }: OptionsProps) {
-  if (!options.length) {
-    return null;
-  }
+  if (!options.length) return null;
 
-  const text = options
+  const optionsText = options
     .map((option) => `${option.name}: ${option.item.name}`)
     .join(', ');
 
-  return (
-    <Container>
-      (
-      {text}
-      )
-    </Container>
-  );
+  const text = `(${optionsText})`;
+
+  return <Paragraph>{text}</Paragraph>;
 }
