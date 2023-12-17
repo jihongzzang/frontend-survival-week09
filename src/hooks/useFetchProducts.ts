@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 
 import { useStore } from 'usestore-ts';
 
-import ProductsStore from '../stores/ProductsStore';
+import { ProductsStore } from '../stores';
 
 export default function useFetchProducts({
   categoryId,

@@ -18,8 +18,8 @@ export default function ProductListPage() {
   const { products } = useFetchProducts({ categoryId });
 
   return (
-    <Flex direction='column' gap='5'>
-      <Heading as='h2' variant='heading_03'>
+    <Flex direction="column" gap="5">
+      <Heading as="h2" variant="heading_03">
         {categoryId ? categoryFormat(categoryId) : '상품'}
       </Heading>
       <Products products={products} />

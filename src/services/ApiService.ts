@@ -30,6 +30,12 @@ export default class ApiService {
 
     return products ?? [];
   }
+
+  async fetchProduct({ productId }: { productId: string }) {
+    const { data } = await this.instance.get(`/products/${productId}`);
+
+    return data;
+  }
 }
 
 export const apiService = new ApiService();

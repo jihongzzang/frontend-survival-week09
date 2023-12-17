@@ -6,6 +6,8 @@ import fixtures from '../fixtures';
 
 import PATHNAME from './constants/pathname';
 
+const [product] = fixtures.products;
+
 const [categories] = fixtures.categories;
 
 const context = describe;
@@ -36,6 +38,30 @@ describe('routes', () => {
         renderRouter(`${PATHNAME.PRODUCTS}?categoryId=${categories.id}`);
         await waitFor(() => {
           screen.getByText(/Product #1/);
+        });
+      });
+    });
+  });
+
+  context(`when the current path is '${PATHNAME.PRODUCTS}/:id'`, () => {
+    context('with correct ID', () => {
+      it('renders the product detail page', async () => {
+        renderRouter(`${PATHNAME.PRODUCTS}/${product.id}`);
+
+        screen.getByText(/Loading/);
+
+        await waitFor(() => {
+          screen.getByText(/Product #1/);
+        });
+      });
+    });
+
+    context('with incorrect ID', () => {
+      it('renders "not found" message', async () => {
+        renderRouter(`${PATHNAME.PRODUCTS}/xxx`);
+
+        await waitFor(() => {
+          screen.getByText(/Error/);
         });
       });
     });

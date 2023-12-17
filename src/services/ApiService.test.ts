@@ -2,6 +2,8 @@ import ApiService from './ApiService';
 
 import fixtures from '../../fixtures';
 
+import { ErrorReponse, transformError } from './apiUtils';
+
 const context = describe;
 
 describe('ApiService', () => {
@@ -35,6 +37,33 @@ describe('ApiService', () => {
         });
 
         expect(products).not.toHaveLength(0);
+      });
+    });
+  });
+
+  describe('fetchProduct', () => {
+    context('with an invalid product ID', () => {
+      it('hould return a 404 error', async () => {
+        let errorResponse: ErrorReponse | null = null;
+
+        try {
+          await apiService.fetchProduct({ productId: 'xxx' });
+        } catch (error) {
+          errorResponse = transformError(error);
+        }
+
+        expect(errorResponse).not.toBeNull();
+        expect(errorResponse?.status).toBe(404);
+      });
+    });
+
+    context('fetchProduct with a valid product ID', () => {
+      const { id } = fixtures.products[0];
+
+      it('should return the detailed product information', async () => {
+        const product = await apiService.fetchProduct({ productId: id });
+
+        expect(product.id).toEqual(id);
       });
     });
   });

@@ -12,7 +12,7 @@ const Thumbnail = styled.img.attrs({
 
 type ImagesProps = {
   images: Image[];
-}
+};
 
 export default function Images({ images }: ImagesProps) {
   const [image] = images;
@@ -21,7 +21,5 @@ export default function Images({ images }: ImagesProps) {
     return null;
   }
 
-  return (
-    <Thumbnail src={image.url} />
-  );
+  return <Thumbnail src={image.url} />;
 }
