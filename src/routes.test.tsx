@@ -19,6 +19,9 @@ describe('routes', () => {
 
       await waitFor(() => {
         screen.getByText(/Shop/);
+        screen.getByText(/상의/);
+        screen.getByText(/아우터/);
+        screen.getByText(/장바구니/);
       });
     });
   });
