@@ -7,6 +7,7 @@ import Images from './Images';
 import Description from './Description';
 
 import useProductDetailStore from '../../hooks/useProductDetailStore';
+import AddToCartForm from './form';
 
 const Container = styled(Flex)`
   aside {
@@ -46,6 +47,7 @@ export default function ProductDetail() {
         <Heading as='h2' variant='body_02'>
           {product.name}
         </Heading>
+        <AddToCartForm />
         <Description value={product.description} />
       </article>
     </Container>

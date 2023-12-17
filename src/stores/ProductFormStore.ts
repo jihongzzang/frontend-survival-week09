@@ -4,9 +4,7 @@ import { Store, Action } from 'usestore-ts';
 
 import { apiService } from '../services/ApiService';
 
-import {
-  ProductDetail, ProductOptionItem, nullProductDetail,
-} from '../types';
+import { ProductDetail, ProductOptionItem, nullProductDetail } from '../types';
 
 @singleton()
 @Store()
@@ -54,7 +52,10 @@ export default class ProductFormStore {
   }
 
   @Action()
-  changeOptionItem({ optionId, optionItemId }: {
+  changeOptionItem({
+    optionId,
+    optionItemId,
+  }: {
     optionId: string;
     optionItemId: string;
   }) {

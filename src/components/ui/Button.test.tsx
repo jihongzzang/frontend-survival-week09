@@ -6,10 +6,6 @@ describe('Button', () => {
   it('renders without crashing', () => {
     const handleClick = jest.fn();
 
-    render((
-      <Button onClick={handleClick}>
-        확인
-      </Button>
-    ));
+    render(<Button onClick={handleClick}>확인</Button>);
   });
 });

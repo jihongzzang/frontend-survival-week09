@@ -1,4 +1,4 @@
-import { screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 import { render } from '../../../test-helpers';
 
@@ -33,7 +33,7 @@ describe('SubmitButton', () => {
       expect(screen.getByRole('button')).toHaveTextContent('장바구니에 담기');
     });
 
-    context('when the button is clicked', () => {
+    context('when the button is ready', () => {
       it('calls addToCart action', () => {
         render(<SubmitButton />);
 

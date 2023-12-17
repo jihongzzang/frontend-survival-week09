@@ -1,3 +1,5 @@
+import { Flex } from '../../ui';
+
 import Option from './Option';
 
 import useProductFormStore from '../../../hooks/useProductFormStore';
@@ -11,8 +13,10 @@ export default function Options() {
     store.changeOptionItem({ optionId, optionItemId });
   };
 
+  if (!product.options.length) return null;
+
   return (
-    <div>
+    <Flex direction="column" gap="2" my="3">
       {product.options.map((option, index) => (
         <Option
           key={option.id}
@@ -21,6 +25,6 @@ export default function Options() {
           onChange={handleChange}
         />
       ))}
-    </div>
+    </Flex>
   );
 }

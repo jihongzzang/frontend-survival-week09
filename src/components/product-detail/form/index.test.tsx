@@ -1,12 +1,12 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react';
-
 import { container } from 'tsyringe';
+
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { render } from '../../../test-helpers';
 
-import AddToCartForm from './AddToCartForm';
+import { ProductDetailStore } from '../../../stores';
 
-import ProductDetailStore from '../../../stores/ProductDetailStore';
+import AddToCartForm from '.';
 
 import fixtures from '../../../../fixtures';
 

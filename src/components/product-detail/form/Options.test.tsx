@@ -1,12 +1,15 @@
-import { screen, fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-import { render } from '../../../test-helpers';
+import userEvent from '@testing-library/user-event';
 
 import Options from './Options';
 
 import fixtures from '../../../../fixtures';
 
+import { render } from '../../../test-helpers';
+
 const [product] = fixtures.products;
+
 const { options } = product;
 
 const store = {
@@ -31,5 +34,25 @@ describe('Options', () => {
     expect(screen.getAllByRole('combobox')).toHaveLength(options.length);
   });
 
-  // TODO: 선택이 바뀌었을 때(힌트: changeOptionItem 호출 여부를 이용)
+  context('when selection is changed', () => {
+    it("calls 'changeOptionItem action'", async () => {
+      render(<Options />);
+
+      const [option] = product.options;
+      const [, item] = option.items;
+
+      const [combobox] = screen.getAllByRole('combobox');
+
+      await userEvent.click(combobox);
+
+      const element = screen.getByRole('option', { name: item.name });
+
+      await userEvent.click(element);
+
+      expect(store.changeOptionItem).toBeCalledWith({
+        optionId: option.id,
+        optionItemId: item.id,
+      });
+    });
+  });
 });

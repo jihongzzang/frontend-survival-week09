@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-const Button = styled.button.attrs({
+import { Button as RadixButton } from '@radix-ui/themes';
+
+const Button = styled(RadixButton).attrs({
   type: 'button',
 })`
-  border: .1rem solid ${(props) => props.theme.colors.primary};
-  background: transparent;
-  color: ${(props) => props.theme.colors.primary};
   cursor: pointer;
 `;
 

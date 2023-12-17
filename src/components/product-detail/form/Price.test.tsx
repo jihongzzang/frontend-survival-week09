@@ -1,12 +1,12 @@
-import { container as iocContainer } from 'tsyringe';
+import { screen } from '@testing-library/react';
+
+import { container } from 'tsyringe';
 
 import { render } from '../../../test-helpers';
 
 import Price from './Price';
 
-import ProductFormStore from '../../../stores/ProductFormStore';
-
-import numberFormat from '../../../utils/numberFormat';
+import { ProductFormStore } from '../../../stores';
 
 import fixtures from '../../../../fixtures';
 
@@ -16,17 +16,16 @@ describe('Price', () => {
   const quantity = 2;
 
   beforeEach(() => {
-    const productFormStore = iocContainer.resolve(ProductFormStore);
+    const productFormStore = container.resolve(ProductFormStore);
 
     productFormStore.setProduct(product);
+
     productFormStore.changeQuantity(quantity);
   });
 
   it('renders price as formatted number', () => {
-    const { container } = render(<Price />);
+    render(<Price />);
 
-    const price = numberFormat(product.price * quantity);
-
-    expect(container).toHaveTextContent(`${price}원`);
+    screen.getByText(/256,000원/);
   });
 });

@@ -1,21 +1,24 @@
 import styled from 'styled-components';
 
+import { Flex, Text } from '../../ui';
+
 import useProductFormStore from '../../../hooks/useProductFormStore';
 
-import numberFormat from '../../../utils/numberFormat';
+import { numberFormat } from '../../../utils';
 
-const Container = styled.div`
-  margin-block: .8rem;
-  font-weight: bold;
-`;
+const PriceText = styled(Text)``;
 
 export default function Price() {
-  const [{ price }] = useProductFormStore();
+  const [, productFormStore] = useProductFormStore();
 
   return (
-    <Container>
-      {numberFormat(price)}
-      원
-    </Container>
+    <Flex direction='column' my='4'>
+      <Text as='span' variant='body_01' color='gray10'>
+        구매가
+      </Text>
+      <PriceText as='p' variant='heading_03'>
+        {`${numberFormat(productFormStore.price)}원`}
+      </PriceText>
+    </Flex>
   );
 }

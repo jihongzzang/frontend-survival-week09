@@ -13,7 +13,7 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <Text as='p' variant='body_03'>
+      <Text as="p" variant="body_03">
         Loading...
       </Text>
     );
@@ -21,7 +21,7 @@ export default function ProductDetailPage() {
 
   if (error) {
     return (
-      <Text as='p' variant='body_03'>
+      <Text as="p" variant="body_03">
         Error!
       </Text>
     );

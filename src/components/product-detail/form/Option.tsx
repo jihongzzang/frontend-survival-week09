@@ -1,8 +1,8 @@
-import ComboBox from '../../ui/molecule/ComboBox';
-
-import { ProductOption, ProductOptionItem } from '../../../types';
+import { ComboBox } from '../../ui/molecule';
 
 import { ChangeFunction } from './types';
+
+import { ProductOption, ProductOptionItem } from '../../../types';
 
 type OptionProps = {
   option: ProductOption;

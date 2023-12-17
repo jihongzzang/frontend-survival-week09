@@ -67,4 +67,25 @@ describe('ApiService', () => {
       });
     });
   });
+
+  test('addProductToCart', async () => {
+    const [product] = fixtures.products;
+
+    const [option] = product.options;
+    const [, item] = option.items;
+
+    let errorOccurred = false;
+
+    try {
+      await apiService.addProductToCart({
+        productId: product.id,
+        options: [{ id: option.id, itemId: item.id }],
+        quantity: 1,
+      });
+    } catch (error) {
+      errorOccurred = true;
+    }
+
+    expect(errorOccurred).toBe(false);
+  });
 });

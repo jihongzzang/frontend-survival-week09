@@ -1,4 +1,6 @@
-import { screen, fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+
+import userEvent from '@testing-library/user-event';
 
 import { render } from '../../../test-helpers';
 
@@ -6,36 +8,48 @@ import Option from './Option';
 
 import fixtures from '../../../../fixtures';
 
+const [product] = fixtures.products;
+
 const context = describe;
 
 describe('Option', () => {
-  const [product] = fixtures.products;
-  const [option] = product.options;
-  const [selectedItem] = option.items;
-
-  const handleChange = jest.fn();
-
   beforeEach(() => {
-    handleChange.mockClear();
+    jest.clearAllMocks();
   });
 
-  function renderOption() {
-    render((
-      <Option
-        option={option}
-        selectedItem={selectedItem}
-        onChange={handleChange}
-      />
-    ));
-  }
+  context('when selection is changed', () => {
+    it("calls 'handleChange action", async () => {
+      const handleChange = jest.fn();
 
-  it('renders combobox', () => {
-    renderOption();
+      const [option] = product.options;
+      const [, item] = option.items;
 
-    screen.getByRole('combobox');
+      const selectedItem = option.items[0];
+
+      render(
+        <Option
+          option={option}
+          selectedItem={selectedItem}
+          onChange={handleChange}
+        />,
+      );
+
+      const combobox = screen.getByRole('combobox');
+
+      await userEvent.click(combobox);
+
+      const element = screen.getByRole('option', { name: item.name });
+
+      await userEvent.click(element);
+
+      expect(handleChange).toHaveBeenCalledWith({
+        optionId: option.id,
+        optionItemId: item.id,
+      });
+    });
   });
-
-  // TODO #1: 선택이 바뀌었을 때
-
-  // TODO #2: 선택이 잘못됐을 때
 });
+
+// TODO #1: 선택이 바뀌었을 때
+
+// TODO #2: 선택이 잘못됐을 때
